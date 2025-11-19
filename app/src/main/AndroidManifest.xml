@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NutriCycle">
         <activity
+            android:name=".KateringDetails"
+            android:exported="false" />
+        <activity
+            android:name=".KateringList"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -2,4 +2,28 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="nutri_blue_primary">#0B5B9E</color>
+    <color name="nutri_blue_dark">#073A63</color>
+    <color name="nutri_green_primary">#7CB342</color>
+    <color name="nutri_green_muted">#C6DA9D</color>
+    <color name="nutri_teal">#189196</color>
+    <color name="nutri_surface">#F5F7FA</color>
+    <color name="nutri_card_text">#1C2430</color>
+    <color name="nutri_text_secondary">#546071</color>
+    <color name="nutri_nav_inactive">#9AA7B7</color>
+    <color name="nutri_nav_active">#25BA67</color>
+
+    <color name="nutri_detail_header_start">#F3F7FB</color>
+    <color name="nutri_detail_header_end">#FFFFFF</color>
+    <color name="nutri_detail_accent">#0E3C6E</color>
+    <color name="nutri_detail_subtitle">#6B7687</color>
+    <color name="nutri_detail_section_start">#0B5B9E</color>
+    <color name="nutri_detail_section_end">#1D87C4</color>
+    <color name="nutri_detail_chip_bg">#EFF3FA</color>
+    <color name="nutri_detail_divider">#E1E7F0</color>
+    <color name="nutri_button_text">#FFFFFF</color>
+    <color name="nutri_button_bg">#0B5B9E</color>
+    <color name="nutri_muted_text">#8894A7</color>
+    <color name="nutri_card_shadow">#1A0B5B9E</color>
 </resources>
