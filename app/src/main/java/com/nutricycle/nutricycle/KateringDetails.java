@@ -1,8 +1,11 @@
 package com.nutricycle.nutricycle;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +25,9 @@ import java.util.Locale;
 public class KateringDetails extends AppCompatActivity {
 
     private KateringMenuData.PackageMenu packageMenu;
+    private String selectedContainer = "non-reusable"; // default
+    private String selectedPaymentMethod = null;
+    private View bottomSheetView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,9 @@ public class KateringDetails extends AppCompatActivity {
         }
 
         setupToolbar();
+        setupBottomNavigation();
+        setupContainerSelection();
+        setupOrderButton();
     }
 
     private void setupToolbar() {
@@ -86,6 +95,199 @@ public class KateringDetails extends AppCompatActivity {
 
         // Setup menu items
         setupMenuItems();
+    }
+
+    private void setupContainerSelection() {
+        MaterialCardView cardReusable = findViewById(R.id.cardReusable);
+        MaterialCardView cardNonReusable = findViewById(R.id.cardNonReusable);
+        ImageView radioReusable = findViewById(R.id.radioReusable);
+        ImageView radioNonReusable = findViewById(R.id.radioNonReusable);
+
+        if (cardReusable != null && cardNonReusable != null) {
+            // Set default selection
+            updateContainerSelection(radioReusable, radioNonReusable, cardReusable, cardNonReusable, false);
+
+            cardReusable.setOnClickListener(v -> {
+                selectedContainer = "reusable";
+                updateContainerSelection(radioReusable, radioNonReusable, cardReusable, cardNonReusable, true);
+            });
+
+            cardNonReusable.setOnClickListener(v -> {
+                selectedContainer = "non-reusable";
+                updateContainerSelection(radioReusable, radioNonReusable, cardReusable, cardNonReusable, false);
+            });
+        }
+    }
+
+    private void updateContainerSelection(ImageView radioReusable, ImageView radioNonReusable,
+                                         MaterialCardView cardReusable, MaterialCardView cardNonReusable,
+                                         boolean isReusable) {
+        if (radioReusable != null && radioNonReusable != null) {
+            if (isReusable) {
+                radioReusable.setImageResource(R.drawable.ic_radio_checked);
+                radioReusable.setColorFilter(ContextCompat.getColor(this, R.color.nutri_green_primary));
+                radioNonReusable.setImageResource(R.drawable.ic_radio_unchecked);
+                radioNonReusable.setColorFilter(ContextCompat.getColor(this, R.color.nutri_text_secondary));
+                cardReusable.setStrokeColor(ContextCompat.getColor(this, R.color.nutri_green_primary));
+                cardReusable.setStrokeWidth(3);
+                cardNonReusable.setStrokeColor(ContextCompat.getColor(this, R.color.nutri_detail_divider));
+                cardNonReusable.setStrokeWidth(1);
+            } else {
+                radioReusable.setImageResource(R.drawable.ic_radio_unchecked);
+                radioReusable.setColorFilter(ContextCompat.getColor(this, R.color.nutri_text_secondary));
+                radioNonReusable.setImageResource(R.drawable.ic_radio_checked);
+                radioNonReusable.setColorFilter(ContextCompat.getColor(this, R.color.nutri_primary));
+                cardReusable.setStrokeColor(ContextCompat.getColor(this, R.color.nutri_detail_divider));
+                cardReusable.setStrokeWidth(1);
+                cardNonReusable.setStrokeColor(ContextCompat.getColor(this, R.color.nutri_primary));
+                cardNonReusable.setStrokeWidth(3);
+            }
+        }
+    }
+
+    private void setupOrderButton() {
+        MaterialCardView btnOrder = findViewById(R.id.btnOrder);
+        if (btnOrder != null) {
+            btnOrder.setOnClickListener(v -> showPaymentBottomSheet());
+        }
+    }
+
+    private void showPaymentBottomSheet() {
+        if (bottomSheetView == null) {
+            LayoutInflater inflater = LayoutInflater.from(this);
+            bottomSheetView = inflater.inflate(R.layout.bottom_sheet_payment, null);
+            
+            // Add to parent
+            android.view.ViewGroup mainLayout = findViewById(R.id.main);
+            if (mainLayout != null) {
+                mainLayout.addView(bottomSheetView);
+            }
+            
+            setupPaymentMethods();
+            setupPaymentButtons();
+        }
+        
+        // Show bottom sheet
+        View container = bottomSheetView.findViewById(R.id.bottomSheetContainer);
+        if (container != null) {
+            container.setVisibility(View.VISIBLE);
+        }
+    }
+    
+    private void hidePaymentBottomSheet() {
+        View container = bottomSheetView != null ? bottomSheetView.findViewById(R.id.bottomSheetContainer) : null;
+        if (container != null) {
+            container.setVisibility(View.GONE);
+        }
+    }
+
+    private void setupPaymentMethods() {
+        // Setup all payment method cards
+        setupPaymentCard(R.id.paymentMandiri, R.id.checkMandiri, "Mandiri");
+        setupPaymentCard(R.id.paymentBRI, R.id.checkBRI, "BRI");
+        setupPaymentCard(R.id.paymentBNI, R.id.checkBNI, "BNI");
+        setupPaymentCard(R.id.paymentBCA, R.id.checkBCA, "BCA");
+        setupPaymentCard(R.id.paymentOVO, R.id.checkOVO, "OVO");
+        setupPaymentCard(R.id.paymentDana, R.id.checkDana, "Dana");
+        setupPaymentCard(R.id.paymentGoPay, R.id.checkGoPay, "GoPay");
+        setupPaymentCard(R.id.paymentQRIS, R.id.checkQRIS, "QRIS");
+        setupPaymentCard(R.id.paymentCOD, R.id.checkCOD, "COD");
+    }
+
+    private void setupPaymentCard(int cardId, int checkId, String paymentMethod) {
+        MaterialCardView card = bottomSheetView.findViewById(cardId);
+        ImageView check = bottomSheetView.findViewById(checkId);
+        
+        if (card != null && check != null) {
+            card.setOnClickListener(v -> {
+                selectPaymentMethod(paymentMethod, checkId);
+            });
+        }
+    }
+
+    private void selectPaymentMethod(String method, int checkId) {
+        selectedPaymentMethod = method;
+        
+        // Hide all checks
+        int[] checkIds = {R.id.checkMandiri, R.id.checkBRI, R.id.checkBNI, R.id.checkBCA,
+                         R.id.checkOVO, R.id.checkDana, R.id.checkGoPay, R.id.checkQRIS, R.id.checkCOD};
+        for (int id : checkIds) {
+            ImageView check = bottomSheetView.findViewById(id);
+            if (check != null) {
+                check.setVisibility(View.GONE);
+            }
+        }
+        
+        // Show selected check
+        ImageView selectedCheck = bottomSheetView.findViewById(checkId);
+        if (selectedCheck != null) {
+            selectedCheck.setVisibility(View.VISIBLE);
+            selectedCheck.setImageResource(R.drawable.ic_radio_checked);
+        }
+        
+        // Update card highlight
+        updatePaymentCardHighlight(method);
+    }
+
+    private void updatePaymentCardHighlight(String method) {
+        int[] cardIds = {R.id.paymentMandiri, R.id.paymentBRI, R.id.paymentBNI, R.id.paymentBCA,
+                        R.id.paymentOVO, R.id.paymentDana, R.id.paymentGoPay, R.id.paymentQRIS, R.id.paymentCOD};
+        String[] methods = {"Mandiri", "BRI", "BNI", "BCA", "OVO", "Dana", "GoPay", "QRIS", "COD"};
+        
+        for (int i = 0; i < cardIds.length; i++) {
+            MaterialCardView card = bottomSheetView.findViewById(cardIds[i]);
+            if (card != null) {
+                if (methods[i].equals(method)) {
+                    card.setStrokeColor(ContextCompat.getColor(this, R.color.nutri_primary));
+                    card.setStrokeWidth(3);
+                } else {
+                    card.setStrokeColor(ContextCompat.getColor(this, R.color.nutri_detail_divider));
+                    card.setStrokeWidth(1);
+                }
+            }
+        }
+    }
+
+    private void setupPaymentButtons() {
+        // Close button
+        ImageView btnClose = bottomSheetView.findViewById(R.id.btnClosePayment);
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> hidePaymentBottomSheet());
+        }
+        
+        // Close on background click
+        View container = bottomSheetView.findViewById(R.id.bottomSheetContainer);
+        if (container != null) {
+            container.setOnClickListener(v -> hidePaymentBottomSheet());
+        }
+        
+        // Prevent closing when clicking on bottom sheet itself
+        View bottomSheet = bottomSheetView.findViewById(R.id.bottomSheet);
+        if (bottomSheet != null) {
+            bottomSheet.setOnClickListener(v -> {
+                // Do nothing, prevent event bubbling
+            });
+        }
+
+        // Add payment method button
+        MaterialCardView btnAddPayment = bottomSheetView.findViewById(R.id.btnAddPayment);
+        if (btnAddPayment != null) {
+            btnAddPayment.setOnClickListener(v -> {
+                // TODO: Implement add payment method
+            });
+        }
+
+        // Done button
+        MaterialCardView btnDone = bottomSheetView.findViewById(R.id.btnDonePayment);
+        if (btnDone != null) {
+            btnDone.setOnClickListener(v -> {
+                if (selectedPaymentMethod != null) {
+                    // TODO: Process order with selected payment method
+                    hidePaymentBottomSheet();
+                    // Show success message or navigate to order confirmation
+                }
+            });
+        }
     }
 
     private void setupMenuItems() {
@@ -246,6 +448,45 @@ public class KateringDetails extends AppCompatActivity {
         
         card.addView(contentLayout);
         container.addView(card);
+    }
+
+    private void setupBottomNavigation() {
+        // Beranda (Home)
+        LinearLayout navHome = findViewById(R.id.navHome);
+        if (navHome != null) {
+            navHome.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringDetails.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            });
+        }
+
+        // Keranjang (Cart)
+        LinearLayout navCart = findViewById(R.id.navCart);
+        if (navCart != null) {
+            navCart.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringDetails.this, CartActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // Riwayat (History)
+        LinearLayout navHistory = findViewById(R.id.navHistory);
+        if (navHistory != null) {
+            navHistory.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringDetails.this, HistoryActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // Profile
+        LinearLayout navProfile = findViewById(R.id.navProfile);
+        if (navProfile != null) {
+            navProfile.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringDetails.this, ProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 }
 

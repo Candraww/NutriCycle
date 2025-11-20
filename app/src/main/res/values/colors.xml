@@ -33,6 +33,15 @@
     <color name="nutri_card_overlay_end">#00000000</color>
     <color name="nutri_chip_bg">#1FFFFFFF</color>
 
+    <color name="nutrigreen">#6C9E47</color>
+    <color name="nutriblue">#1F4E79</color>
     <color name="nutri_primary">#0B5B9E</color>
     <color name="nutri_primary_dark">#073A63</color>
+    
+    <!-- New Premium Colors -->
+    <color name="nutri_green_main">#A9CF60</color>
+    <color name="nutri_blue_main">#0A589C</color>
+    <color name="nutri_teal_main">#6ECAD0</color>
+    <color name="nutri_surface_soft">#F3F6FA</color>
+    <color name="nutri_green_lime">#9CD564</color>
 </resources>

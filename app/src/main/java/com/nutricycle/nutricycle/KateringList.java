@@ -12,6 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
+import android.widget.ImageView;
 
 public class KateringList extends AppCompatActivity {
 
@@ -27,53 +29,56 @@ public class KateringList extends AppCompatActivity {
         });
 
         setupToolbar();
-        setupOrderButtons();
+        setupCardClicks();
+        setupBottomNavigation();
     }
 
     private void setupToolbar() {
-        MaterialToolbar toolbar = findViewById(R.id.pageToolbar);
-        if (toolbar != null) {
-            toolbar.setNavigationOnClickListener(v -> finish());
+        // Back button handler
+        ImageView btnBack = findViewById(R.id.toolbarBack);
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
 
-            TextView titleView = toolbar.findViewById(R.id.toolbarTitle);
-            TextView subtitleView = toolbar.findViewById(R.id.toolbarSubtitle);
-            TextView countView = toolbar.findViewById(R.id.toolbarKateringCount);
+        // Update text views
+        TextView titleView = findViewById(R.id.toolbarTitle);
+        TextView subtitleView = findViewById(R.id.toolbarSubtitle);
+        TextView countView = findViewById(R.id.toolbarKateringCount);
 
-            if (titleView != null) {
-                titleView.setText("Daftar Katering");
-            }
-            if (subtitleView != null) {
-                subtitleView.setText("Plan sehat setiap minggu");
-            }
-            if (countView != null) {
-                LinearLayout listContainer = findViewById(R.id.listContainer);
-                int count = listContainer != null ? listContainer.getChildCount() : 0;
-                countView.setText(count + " katering tersedia");
-            }
+        if (titleView != null) {
+            titleView.setText("Daftar Katering");
+        }
+        if (subtitleView != null) {
+            subtitleView.setText("Plan sehat setiap minggu");
+        }
+        if (countView != null) {
+            LinearLayout listContainer = findViewById(R.id.listContainer);
+            int count = listContainer != null ? listContainer.getChildCount() : 0;
+            countView.setText(count + " katering tersedia");
         }
     }
 
-    private void setupOrderButtons() {
-        // Button untuk FreshFuel Kitchen
-        TextView btnOrderFreshFuel = findViewById(R.id.btnOrderFreshFuel);
-        if (btnOrderFreshFuel != null) {
-            btnOrderFreshFuel.setOnClickListener(v -> {
+    private void setupCardClicks() {
+        // Card FreshFuel Kitchen
+        MaterialCardView cardFreshFuel = findViewById(R.id.cardFreshFuel);
+        if (cardFreshFuel != null) {
+            cardFreshFuel.setOnClickListener(v -> {
                 handleOrder("FreshFuel Kitchen", "Rp 325.000 / minggu");
             });
         }
 
-        // Button untuk Rasa Nusantara Sehat
-        TextView btnOrderNusantara = findViewById(R.id.btnOrderNusantara);
-        if (btnOrderNusantara != null) {
-            btnOrderNusantara.setOnClickListener(v -> {
+        // Card Rasa Nusantara Sehat
+        MaterialCardView cardNusantara = findViewById(R.id.cardNusantara);
+        if (cardNusantara != null) {
+            cardNusantara.setOnClickListener(v -> {
                 handleOrder("Rasa Nusantara Sehat", "Rp 310.000 / minggu");
             });
         }
 
-        // Button untuk Leafy Bowl
-        TextView btnOrderLeafy = findViewById(R.id.btnOrderLeafy);
-        if (btnOrderLeafy != null) {
-            btnOrderLeafy.setOnClickListener(v -> {
+        // Card Leafy Bowl
+        MaterialCardView cardLeafy = findViewById(R.id.cardLeafy);
+        if (cardLeafy != null) {
+            cardLeafy.setOnClickListener(v -> {
                 handleOrder("Leafy Bowl", "Rp 299.000 / minggu");
             });
         }
@@ -85,5 +90,44 @@ public class KateringList extends AppCompatActivity {
         intent.putExtra("package_name", packageName);
         intent.putExtra("price", price);
         startActivity(intent);
+    }
+
+    private void setupBottomNavigation() {
+        // Beranda (Home)
+        LinearLayout navHome = findViewById(R.id.navHome);
+        if (navHome != null) {
+            navHome.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringList.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            });
+        }
+
+        // Keranjang (Cart)
+        LinearLayout navCart = findViewById(R.id.navCart);
+        if (navCart != null) {
+            navCart.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringList.this, CartActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // Riwayat (History)
+        LinearLayout navHistory = findViewById(R.id.navHistory);
+        if (navHistory != null) {
+            navHistory.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringList.this, HistoryActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // Profile
+        LinearLayout navProfile = findViewById(R.id.navProfile);
+        if (navProfile != null) {
+            navProfile.setOnClickListener(v -> {
+                Intent intent = new Intent(KateringList.this, ProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 }
