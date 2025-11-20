@@ -30,91 +30,71 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/headerContainer"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/pageToolbar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="16dp"
+        android:elevation="8dp"
+        app:title=""
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/nutri_primary_dark"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/pageToolbar"
-            android:layout_width="300dp"
-            android:layout_height="68dp"
-            android:elevation="10dp"
-            android:backgroundTint="@android:color/white"
-            app:cardCornerRadius="40dp"
-            app:cardUseCompatPadding="false"
-            app:cardElevation="8dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar Katering"
+                android:textColor="@color/nutri_primary_dark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/toolbarSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Plan sehat setiap minggu"
+                android:textColor="@color/nutri_muted_text"
+                android:textSize="14sp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="12dp">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_fire"
+                    android:tint="@color/nutri_primary" />
 
                 <TextView
-                    android:id="@+id/toolbarTitle"
+                    android:id="@+id/toolbarKateringCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Daftar Katering"
-                    android:textColor="@color/nutri_primary_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:id="@+id/toolbarSubtitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Plan sehat setiap minggu"
-                            android:textColor="@color/nutri_muted_text"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="end|center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:src="@drawable/ic_fire"
-                            android:tint="@color/nutri_primary" />
-
-                        <TextView
-                            android:id="@+id/toolbarKateringCount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:text="3 katering tersedia"
-                            android:textSize="13sp"
-                            android:textColor="@color/nutri_primary" />
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_marginStart="6dp"
+                    android:text="3 katering tersedia"
+                    android:textSize="13sp"
+                    android:textColor="@color/nutri_primary" />
             </LinearLayout>
+        </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
-    </FrameLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <!-- SCROLL VIEW -->
     <androidx.core.widget.NestedScrollView
