@@ -8,15 +8,71 @@
     android:background="@color/nutri_surface"
     tools:context=".KateringDetails">
 
-    <!-- TOP HEADER -->
-    <View
-        android:id="@+id/topAccent"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/pageToolbar"
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:background="@drawable/weekly_header_gradient"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="16dp"
+        android:elevation="8dp"
+        app:title=""
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/nutri_primary_dark"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail Katering"
+                android:textColor="@color/nutri_primary_dark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/toolbarSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Rincian menu dan gizi mingguan"
+                android:textColor="@color/nutri_muted_text"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_fire"
+                    android:tint="@color/nutri_primary" />
+
+                <TextView
+                    android:id="@+id/toolbarKateringInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Rating &amp; lokasi"
+                    android:textColor="@color/nutri_primary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <!-- SCROLL VIEW -->
     <androidx.core.widget.NestedScrollView
@@ -26,8 +82,8 @@
         android:padding="20dp"
         android:clipToPadding="false"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/topAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pageToolbar"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -37,46 +93,67 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- TITLE BAR -->
+            <!-- HEADER SUMMARY -->
             <LinearLayout
+                android:id="@+id/headerSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/weekly_header_gradient"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <ImageView
-                    android:id="@+id/backButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/meal_option_background"
-                    android:padding="6dp"
-                    android:src="@drawable/ic_arrow_back"
-                    android:clickable="true"
-                    android:focusable="true" />
+                <TextView
+                    android:id="@+id/tvHeaderName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Katering"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvHeaderRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Detail Paket"
-                        android:textColor="@color/nutri_detail_subtitle"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/tvPackageName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Paket Katering"
+                        android:background="@drawable/meal_option_background"
+                        android:drawablePadding="6dp"
+                        android:drawableStart="@drawable/ic_star"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp"
+                        android:text="4.9 / 5"
                         android:textColor="@color/nutri_detail_accent"
-                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHeaderLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/meal_option_background"
+                        android:drawablePadding="6dp"
+                        android:drawableStart="@drawable/ic_location"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp"
+                        android:text="Jakarta"
+                        android:textColor="@color/nutri_detail_accent"
                         android:textStyle="bold" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvHeaderSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Deskripsi singkat katering"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!-- PACKAGE INFO CARD -->
@@ -180,7 +257,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Menu untuk Senin - Jumat (2x makan per hari)"
+                    android:text="Menu untuk Senin - Jumat (Makan Siang &amp; Makan Malam)"
                     android:textColor="@color/nutri_text_secondary"
                     android:textSize="13sp" />
 
@@ -196,6 +273,10 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/view_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

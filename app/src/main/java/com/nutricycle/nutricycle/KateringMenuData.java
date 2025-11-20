@@ -7,23 +7,52 @@ import java.util.Map;
 
 public class KateringMenuData {
     
+    public static class NutritionInfo {
+        private int calories;      // kkal
+        private int protein;       // gram
+        private int carbs;         // gram
+        private int fat;           // gram
+        private int fiber;         // gram
+        
+        public NutritionInfo(int calories, int protein, int carbs, int fat, int fiber) {
+            this.calories = calories;
+            this.protein = protein;
+            this.carbs = carbs;
+            this.fat = fat;
+            this.fiber = fiber;
+        }
+        
+        public int getCalories() { return calories; }
+        public int getProtein() { return protein; }
+        public int getCarbs() { return carbs; }
+        public int getFat() { return fat; }
+        public int getFiber() { return fiber; }
+        
+        public String getFormattedString() {
+            return calories + " kkal | P: " + protein + "g | K: " + carbs + "g | L: " + fat + "g | S: " + fiber + "g";
+        }
+    }
+    
     public static class MenuItem {
         private String day;
-        private String mealTime; // "Sarapan" atau "Makan Siang"
+        private String mealTime; // "Makan Siang" atau "Makan Malam"
         private String menuName;
         private String description;
+        private NutritionInfo nutrition;
         
-        public MenuItem(String day, String mealTime, String menuName, String description) {
+        public MenuItem(String day, String mealTime, String menuName, String description, NutritionInfo nutrition) {
             this.day = day;
             this.mealTime = mealTime;
             this.menuName = menuName;
             this.description = description;
+            this.nutrition = nutrition;
         }
         
         public String getDay() { return day; }
         public String getMealTime() { return mealTime; }
         public String getMenuName() { return menuName; }
         public String getDescription() { return description; }
+        public NutritionInfo getNutrition() { return nutrition; }
     }
     
     public static class PackageMenu {
@@ -31,13 +60,18 @@ public class KateringMenuData {
         private String subtitle;
         private String price;
         private String calories;
+        private String location;
+        private float rating;
         private List<MenuItem> menus;
         
-        public PackageMenu(String packageName, String subtitle, String price, String calories, List<MenuItem> menus) {
+        public PackageMenu(String packageName, String subtitle, String price, String calories,
+                           String location, float rating, List<MenuItem> menus) {
             this.packageName = packageName;
             this.subtitle = subtitle;
             this.price = price;
             this.calories = calories;
+            this.location = location;
+            this.rating = rating;
             this.menus = menus;
         }
         
@@ -45,6 +79,8 @@ public class KateringMenuData {
         public String getSubtitle() { return subtitle; }
         public String getPrice() { return price; }
         public String getCalories() { return calories; }
+        public String getLocation() { return location; }
+        public float getRating() { return rating; }
         public List<MenuItem> getMenus() { return menus; }
     }
     
@@ -53,30 +89,52 @@ public class KateringMenuData {
         List<MenuItem> menus = new ArrayList<>();
         
         // Senin
-        menus.add(new MenuItem("Senin", "Sarapan", "Oatmeal dengan Buah", "Oatmeal dengan pisang, stroberi, dan madu"));
-        menus.add(new MenuItem("Senin", "Makan Siang", "Ayam panggang rempah", "Ayam panggang dengan rempah-rempah, nasi merah, dan sayuran"));
+        menus.add(new MenuItem("Senin", "Makan Siang", "Ayam panggang rempah", 
+            "Ayam panggang dengan rempah-rempah, nasi merah, dan sayuran",
+            new NutritionInfo(420, 35, 45, 12, 5)));
+        menus.add(new MenuItem("Senin", "Makan Malam", "Ikan dori lemon", 
+            "Ikan dori panggang dengan lemon, quinoa, dan brokoli",
+            new NutritionInfo(380, 32, 38, 10, 6)));
         
         // Selasa
-        menus.add(new MenuItem("Selasa", "Sarapan", "Smoothie Bowl Protein", "Smoothie bowl dengan protein powder, granola, dan buah"));
-        menus.add(new MenuItem("Selasa", "Makan Siang", "Ikan dori lemon", "Ikan dori panggang dengan lemon, quinoa, dan brokoli"));
+        menus.add(new MenuItem("Selasa", "Makan Siang", "Quinoa bowl sayur", 
+            "Quinoa dengan sayuran panggang dan dressing sehat",
+            new NutritionInfo(350, 18, 52, 8, 9)));
+        menus.add(new MenuItem("Selasa", "Makan Malam", "Dada ayam panggang", 
+            "Dada ayam panggang dengan ubi jalar dan asparagus",
+            new NutritionInfo(410, 38, 42, 9, 7)));
         
         // Rabu
-        menus.add(new MenuItem("Rabu", "Sarapan", "Telur Orak-arik dengan Roti", "Telur orak-arik dengan roti gandum dan sayuran"));
-        menus.add(new MenuItem("Rabu", "Makan Siang", "Quinoa bowl sayur", "Quinoa dengan sayuran panggang dan dressing sehat"));
+        menus.add(new MenuItem("Rabu", "Makan Siang", "Salmon panggang", 
+            "Salmon panggang dengan nasi merah dan sayuran hijau",
+            new NutritionInfo(450, 36, 40, 18, 4)));
+        menus.add(new MenuItem("Rabu", "Makan Malam", "Ayam panggang rempah", 
+            "Ayam panggang dengan rempah-rempah, nasi merah, dan sayuran",
+            new NutritionInfo(420, 35, 45, 12, 5)));
         
         // Kamis
-        menus.add(new MenuItem("Kamis", "Sarapan", "Greek Yogurt dengan Berries", "Greek yogurt dengan blueberry, raspberry, dan kacang"));
-        menus.add(new MenuItem("Kamis", "Makan Siang", "Dada ayam panggang", "Dada ayam panggang dengan ubi jalar dan asparagus"));
+        menus.add(new MenuItem("Kamis", "Makan Siang", "Ikan dori lemon", 
+            "Ikan dori panggang dengan lemon, quinoa, dan brokoli",
+            new NutritionInfo(380, 32, 38, 10, 6)));
+        menus.add(new MenuItem("Kamis", "Makan Malam", "Quinoa bowl sayur", 
+            "Quinoa dengan sayuran panggang dan dressing sehat",
+            new NutritionInfo(350, 18, 52, 8, 9)));
         
         // Jumat
-        menus.add(new MenuItem("Jumat", "Sarapan", "Avocado Toast", "Roti gandum dengan alpukat, telur rebus, dan tomat"));
-        menus.add(new MenuItem("Jumat", "Makan Siang", "Salmon panggang", "Salmon panggang dengan nasi merah dan sayuran hijau"));
+        menus.add(new MenuItem("Jumat", "Makan Siang", "Dada ayam panggang", 
+            "Dada ayam panggang dengan ubi jalar dan asparagus",
+            new NutritionInfo(410, 38, 42, 9, 7)));
+        menus.add(new MenuItem("Jumat", "Makan Malam", "Salmon panggang", 
+            "Salmon panggang dengan nasi merah dan sayuran hijau",
+            new NutritionInfo(450, 36, 40, 18, 4)));
         
         return new PackageMenu(
             "FreshFuel Kitchen",
             "High Protein Balance",
             "Rp 325.000 / minggu",
             "350–450 kkal / hari",
+            "Jakarta Pusat",
+            4.9f,
             menus
         );
     }
@@ -86,30 +144,52 @@ public class KateringMenuData {
         List<MenuItem> menus = new ArrayList<>();
         
         // Senin
-        menus.add(new MenuItem("Senin", "Sarapan", "Bubur Ayam Sehat", "Bubur ayam dengan nasi merah dan topping sehat"));
-        menus.add(new MenuItem("Senin", "Makan Siang", "Nasi merah rendang jamur", "Rendang jamur dengan nasi merah dan sayuran"));
+        menus.add(new MenuItem("Senin", "Makan Siang", "Nasi merah rendang jamur", 
+            "Rendang jamur dengan nasi merah dan sayuran",
+            new NutritionInfo(420, 22, 58, 12, 8)));
+        menus.add(new MenuItem("Senin", "Makan Malam", "Tumis sayur woku", 
+            "Tumis sayuran dengan bumbu woku dan ikan",
+            new NutritionInfo(380, 28, 35, 14, 6)));
         
         // Selasa
-        menus.add(new MenuItem("Selasa", "Sarapan", "Nasi Uduk Sehat", "Nasi uduk dengan telur dan sambal"));
-        menus.add(new MenuItem("Selasa", "Makan Siang", "Tumis sayur woku", "Tumis sayuran dengan bumbu woku dan ikan"));
+        menus.add(new MenuItem("Selasa", "Makan Siang", "Sup bening jahe", 
+            "Sup bening dengan jahe, ayam, dan sayuran",
+            new NutritionInfo(320, 25, 32, 8, 5)));
+        menus.add(new MenuItem("Selasa", "Makan Malam", "Pepes ikan", 
+            "Pepes ikan dengan nasi merah dan lalapan",
+            new NutritionInfo(410, 30, 48, 10, 7)));
         
         // Rabu
-        menus.add(new MenuItem("Rabu", "Sarapan", "Lontong Sayur Sehat", "Lontong sayur dengan kuah bening"));
-        menus.add(new MenuItem("Rabu", "Makan Siang", "Sup bening jahe", "Sup bening dengan jahe, ayam, dan sayuran"));
+        menus.add(new MenuItem("Rabu", "Makan Siang", "Rawon Sehat", 
+            "Rawon dengan daging tanpa lemak dan nasi merah",
+            new NutritionInfo(450, 32, 52, 15, 6)));
+        menus.add(new MenuItem("Rabu", "Makan Malam", "Nasi merah rendang jamur", 
+            "Rendang jamur dengan nasi merah dan sayuran",
+            new NutritionInfo(420, 22, 58, 12, 8)));
         
         // Kamis
-        menus.add(new MenuItem("Kamis", "Sarapan", "Ketoprak Sehat", "Ketoprak dengan tahu, lontong, dan bumbu kacang"));
-        menus.add(new MenuItem("Kamis", "Makan Siang", "Pepes ikan", "Pepes ikan dengan nasi merah dan lalapan"));
+        menus.add(new MenuItem("Kamis", "Makan Siang", "Tumis sayur woku", 
+            "Tumis sayuran dengan bumbu woku dan ikan",
+            new NutritionInfo(380, 28, 35, 14, 6)));
+        menus.add(new MenuItem("Kamis", "Makan Malam", "Sup bening jahe", 
+            "Sup bening dengan jahe, ayam, dan sayuran",
+            new NutritionInfo(320, 25, 32, 8, 5)));
         
         // Jumat
-        menus.add(new MenuItem("Jumat", "Sarapan", "Gado-gado", "Gado-gado dengan sayuran segar dan bumbu kacang"));
-        menus.add(new MenuItem("Jumat", "Makan Siang", "Rawon Sehat", "Rawon dengan daging tanpa lemak dan nasi merah"));
+        menus.add(new MenuItem("Jumat", "Makan Siang", "Pepes ikan", 
+            "Pepes ikan dengan nasi merah dan lalapan",
+            new NutritionInfo(410, 30, 48, 10, 7)));
+        menus.add(new MenuItem("Jumat", "Makan Malam", "Rawon Sehat", 
+            "Rawon dengan daging tanpa lemak dan nasi merah",
+            new NutritionInfo(450, 32, 52, 15, 6)));
         
         return new PackageMenu(
             "Rasa Nusantara Sehat",
             "Menu Nusantara Rendah Minyak",
             "Rp 310.000 / minggu",
             "400–500 kkal / hari",
+            "Bandung",
+            4.7f,
             menus
         );
     }
@@ -119,30 +199,52 @@ public class KateringMenuData {
         List<MenuItem> menus = new ArrayList<>();
         
         // Senin
-        menus.add(new MenuItem("Senin", "Sarapan", "Chia Pudding", "Chia pudding dengan buah dan granola"));
-        menus.add(new MenuItem("Senin", "Makan Siang", "Bali tempe bowl", "Tempe bali dengan nasi merah dan sayuran"));
+        menus.add(new MenuItem("Senin", "Makan Siang", "Bali tempe bowl", 
+            "Tempe bali dengan nasi merah dan sayuran",
+            new NutritionInfo(380, 20, 55, 12, 10)));
+        menus.add(new MenuItem("Senin", "Makan Malam", "Pasta pesto brokoli", 
+            "Pasta dengan pesto brokoli dan sayuran",
+            new NutritionInfo(360, 16, 48, 14, 8)));
         
         // Selasa
-        menus.add(new MenuItem("Selasa", "Sarapan", "Green Smoothie", "Smoothie hijau dengan bayam, pisang, dan protein"));
-        menus.add(new MenuItem("Selasa", "Makan Siang", "Pasta pesto brokoli", "Pasta dengan pesto brokoli dan sayuran"));
+        menus.add(new MenuItem("Selasa", "Makan Siang", "Buddha Bowl", 
+            "Bowl dengan quinoa, sayuran, dan dressing",
+            new NutritionInfo(340, 15, 52, 10, 11)));
+        menus.add(new MenuItem("Selasa", "Makan Malam", "Quinoa Salad Bowl", 
+            "Salad quinoa dengan sayuran segar dan dressing",
+            new NutritionInfo(320, 14, 50, 9, 12)));
         
         // Rabu
-        menus.add(new MenuItem("Rabu", "Sarapan", "Acai Bowl", "Acai bowl dengan topping buah dan granola"));
-        menus.add(new MenuItem("Rabu", "Makan Siang", "Buddha Bowl", "Bowl dengan quinoa, sayuran, dan dressing"));
+        menus.add(new MenuItem("Rabu", "Makan Siang", "Bali tempe bowl", 
+            "Tempe bali dengan nasi merah dan sayuran",
+            new NutritionInfo(380, 20, 55, 12, 10)));
+        menus.add(new MenuItem("Rabu", "Makan Malam", "Pasta pesto brokoli", 
+            "Pasta dengan pesto brokoli dan sayuran",
+            new NutritionInfo(360, 16, 48, 14, 8)));
         
         // Kamis
-        menus.add(new MenuItem("Kamis", "Sarapan", "Overnight Oats", "Overnight oats dengan buah dan kacang"));
-        menus.add(new MenuItem("Kamis", "Makan Siang", "Smoothie bowl tropis", "Smoothie bowl dengan buah tropis dan topping"));
+        menus.add(new MenuItem("Kamis", "Makan Siang", "Buddha Bowl", 
+            "Bowl dengan quinoa, sayuran, dan dressing",
+            new NutritionInfo(340, 15, 52, 10, 11)));
+        menus.add(new MenuItem("Kamis", "Makan Malam", "Smoothie bowl tropis", 
+            "Smoothie bowl dengan buah tropis dan topping",
+            new NutritionInfo(300, 8, 62, 6, 9)));
         
         // Jumat
-        menus.add(new MenuItem("Jumat", "Sarapan", "Avocado Smoothie", "Smoothie alpukat dengan madu dan granola"));
-        menus.add(new MenuItem("Jumat", "Makan Siang", "Quinoa Salad Bowl", "Salad quinoa dengan sayuran segar dan dressing"));
+        menus.add(new MenuItem("Jumat", "Makan Siang", "Quinoa Salad Bowl", 
+            "Salad quinoa dengan sayuran segar dan dressing",
+            new NutritionInfo(320, 14, 50, 9, 12)));
+        menus.add(new MenuItem("Jumat", "Makan Malam", "Bali tempe bowl", 
+            "Tempe bali dengan nasi merah dan sayuran",
+            new NutritionInfo(380, 20, 55, 12, 10)));
         
         return new PackageMenu(
             "Leafy Bowl",
             "Plant-based Energizer",
             "Rp 299.000 / minggu",
             "320–420 kkal / hari",
+            "Jakarta Selatan",
+            4.8f,
             menus
         );
     }

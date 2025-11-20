@@ -26,4 +26,13 @@
     <color name="nutri_button_bg">#0B5B9E</color>
     <color name="nutri_muted_text">#8894A7</color>
     <color name="nutri_card_shadow">#1A0B5B9E</color>
+
+    <color name="nutri_card_green">#A9CF60</color>
+    <color name="nutri_card_bg">#243240</color>
+    <color name="nutri_card_overlay_start">#CC000000</color>
+    <color name="nutri_card_overlay_end">#00000000</color>
+    <color name="nutri_chip_bg">#1FFFFFFF</color>
+
+    <color name="nutri_primary">#0B5B9E</color>
+    <color name="nutri_primary_dark">#073A63</color>
 </resources>

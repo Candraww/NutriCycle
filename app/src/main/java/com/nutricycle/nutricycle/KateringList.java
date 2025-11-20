@@ -2,7 +2,7 @@ package com.nutricycle.nutricycle;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class KateringList extends AppCompatActivity {
 
@@ -24,14 +26,30 @@ public class KateringList extends AppCompatActivity {
             return insets;
         });
 
-        setupBackButton();
+        setupToolbar();
         setupOrderButtons();
     }
 
-    private void setupBackButton() {
-        View backButton = findViewById(R.id.backButton);
-        if (backButton != null) {
-            backButton.setOnClickListener(v -> finish());
+    private void setupToolbar() {
+        MaterialToolbar toolbar = findViewById(R.id.pageToolbar);
+        if (toolbar != null) {
+            toolbar.setNavigationOnClickListener(v -> finish());
+
+            TextView titleView = toolbar.findViewById(R.id.toolbarTitle);
+            TextView subtitleView = toolbar.findViewById(R.id.toolbarSubtitle);
+            TextView countView = toolbar.findViewById(R.id.toolbarKateringCount);
+
+            if (titleView != null) {
+                titleView.setText("Daftar Katering");
+            }
+            if (subtitleView != null) {
+                subtitleView.setText("Plan sehat setiap minggu");
+            }
+            if (countView != null) {
+                LinearLayout listContainer = findViewById(R.id.listContainer);
+                int count = listContainer != null ? listContainer.getChildCount() : 0;
+                countView.setText(count + " katering tersedia");
+            }
         }
     }
 
