@@ -65,33 +65,10 @@ Halaman personalisasi pengguna untuk mengatur preferensi diet (vegan/low-carb), 
 ## 🛠️ Technical Architecture
 
 ### Android Client
-* **Language:** Kotlin
+* **Language:** Java
 * **UI Layout:** XML (ConstraintLayout, NestedScrollView, Material Components)
 * **Design Pattern:** MVVM (Model-View-ViewModel)
 
-### Backend Services (Learning Roadmap)
-* **Core API:** Go (Golang) with Gin/Fiber Framework
-* **Database:** MySQL
-* **Features:** REST API untuk manajemen user dan data katering.
 
 ---
 
-## 📂 Project Structure
-
-Struktur direktori proyek disusun untuk skalabilitas (Scalability) dan keterbacaan (Readability):
-
-```text
-NutriCycle/
-├── app/src/main/
-│   ├── java/com/candrawijaya/nutricycle/
-│   │   ├── data/            # Repository & Models
-│   │   ├── ui/
-│   │   │   ├── home/        # HomeFragment & ViewModel
-│   │   │   ├── catering/    # List & Detail Logic
-│   │   │   ├── tracker/     # Gizi Meter Logic
-│   │   │   └── profile/     # Profile Logic
-│   │   └── utils/           # Helper classes
-│   └── res/
-│       ├── layout/          # XML Layouts (activity_main, fragment_home, etc)
-│       └── drawable/        # Assets & Custom Shapes
-└── README.md
