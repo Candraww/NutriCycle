@@ -50,10 +50,15 @@ Halaman personalisasi pengguna untuk mengatur preferensi diet (vegan/low-carb), 
   <img src="docs/kateringdetail1.jpg" alt="Detail" width="200"/>
 </div>
 <div align="center">
-  <img src="docs/kateringdetail2.jpg" alt="Detail" width="200"/>
+  <img src="docs/kateringdetail2.jpg" alt="Detail2" width="200"/>
   <img src="docs/payment.jpg" alt="payment" width="200"/>
   <img src="docs/profile.jpg" alt="profile" width="200"/>
 </div>
+<div align="center">
+  <img src="docs/gizimeter.jpg" alt="gizimeter1" width="200"/>
+  <img src="docs/gizimeter2.jpg" alt="gizimeter2" width="200"/>
+</div>
+
 
 ---
 
