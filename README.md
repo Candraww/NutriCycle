@@ -7,8 +7,7 @@
 **Sustainable Healthy Catering & Nutrition Tracker App**
 
 [![Android](https://img.shields.io/badge/Platform-Android-3DDC84?style=flat&logo=android)](https://developer.android.com/)
-[![Kotlin](https://img.shields.io/badge/Language-Kotlin-7F52FF?style=flat&logo=kotlin)](https://kotlinlang.org/)
-[![Go](https://img.shields.io/badge/Backend-Golang-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![Java](https://img.shields.io/badge/Language-Java-ED8B00?style=flat&logo=openjdk)](https://www.java.com/)
 [![Design](https://img.shields.io/badge/Design-Minimalist-FF61F6?style=flat&logo=figma)]()
 
 </div>
