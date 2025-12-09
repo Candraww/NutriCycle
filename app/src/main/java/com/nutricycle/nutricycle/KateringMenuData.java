@@ -29,7 +29,7 @@ public class KateringMenuData {
         public int getFiber() { return fiber; }
         
         public String getFormattedString() {
-            return calories + " kkal | P: " + protein + "g | K: " + carbs + "g | L: " + fat + "g | S: " + fiber + "g";
+            return calories + " kkal | Pro: " + protein + "g | Kar: " + carbs + "g | Lem: " + fat + "g | Ser: " + fiber + "g";
         }
     }
     

@@ -182,6 +182,7 @@ public class GiziMeterActivity extends AppCompatActivity {
 
     private MaterialCardView createWeekCard(WeekData week, boolean isHighest, boolean isLowest) {
         MaterialCardView card = new MaterialCardView(this);
+        card.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white));
         card.setCardElevation(4);
         card.setRadius(16f);
         card.setStrokeWidth(isHighest || isLowest ? 3 : 1);
@@ -230,7 +231,7 @@ public class GiziMeterActivity extends AppCompatActivity {
         macrosLayout.setWeightSum(3);
 
         TextView protein = new TextView(this);
-        protein.setText(String.format(Locale.getDefault(), "P: %.0fg", week.protein));
+        protein.setText(String.format(Locale.getDefault(), "Pro: %.0fg", week.protein));
         LinearLayout.LayoutParams pParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         protein.setLayoutParams(pParams);
         protein.setTextSize(12);
@@ -238,7 +239,7 @@ public class GiziMeterActivity extends AppCompatActivity {
         macrosLayout.addView(protein);
 
         TextView carbs = new TextView(this);
-        carbs.setText(String.format(Locale.getDefault(), "K: %.0fg", week.carbs));
+        carbs.setText(String.format(Locale.getDefault(), "Kar: %.0fg", week.carbs));
         LinearLayout.LayoutParams cParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         carbs.setLayoutParams(cParams);
         carbs.setTextSize(12);
@@ -246,7 +247,7 @@ public class GiziMeterActivity extends AppCompatActivity {
         macrosLayout.addView(carbs);
 
         TextView fat = new TextView(this);
-        fat.setText(String.format(Locale.getDefault(), "L: %.0fg", week.fat));
+        fat.setText(String.format(Locale.getDefault(), "Lem: %.0fg", week.fat));
         LinearLayout.LayoutParams fParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         fat.setLayoutParams(fParams);
         fat.setTextSize(12);
@@ -273,6 +274,7 @@ public class GiziMeterActivity extends AppCompatActivity {
 
     private MaterialCardView createMonthCard(MonthData month) {
         MaterialCardView card = new MaterialCardView(this);
+        card.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white));
         card.setCardElevation(4);
         card.setRadius(16f);
         card.setStrokeWidth(1);
@@ -333,7 +335,7 @@ public class GiziMeterActivity extends AppCompatActivity {
         macrosLayout.setWeightSum(3);
 
         TextView protein = new TextView(this);
-        protein.setText(String.format(Locale.getDefault(), "P: %.0fg", month.protein));
+        protein.setText(String.format(Locale.getDefault(), "Pro: %.0fg", month.protein));
         LinearLayout.LayoutParams pParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         protein.setLayoutParams(pParams);
         protein.setTextSize(12);
@@ -341,7 +343,7 @@ public class GiziMeterActivity extends AppCompatActivity {
         macrosLayout.addView(protein);
 
         TextView carbs = new TextView(this);
-        carbs.setText(String.format(Locale.getDefault(), "K: %.0fg", month.carbs));
+        carbs.setText(String.format(Locale.getDefault(), "Kar: %.0fg", month.carbs));
         LinearLayout.LayoutParams cParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         carbs.setLayoutParams(cParams);
         carbs.setTextSize(12);
@@ -349,7 +351,7 @@ public class GiziMeterActivity extends AppCompatActivity {
         macrosLayout.addView(carbs);
 
         TextView fat = new TextView(this);
-        fat.setText(String.format(Locale.getDefault(), "L: %.0fg", month.fat));
+        fat.setText(String.format(Locale.getDefault(), "Lem: %.0fg", month.fat));
         LinearLayout.LayoutParams fParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         fat.setLayoutParams(fParams);
         fat.setTextSize(12);

@@ -397,3 +397,5 @@
         layout="@layout/view_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

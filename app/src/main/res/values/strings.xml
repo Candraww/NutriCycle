@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">NutriCycle</string>
+    
+    <!-- Profile Strings -->
+    <string name="nav_profile">Profile</string>
+    <string name="profile_join_title">Bergabung dengan NutriCycle</string>
+    <string name="profile_join_subtitle">Daftar atau masuk untuk menikmati layanan katering sehat dan fitur lengkap lainnya</string>
+    <string name="profile_join_cta">Masuk / Daftar</string>
+    <string name="profile_edit">Edit Profile</string>
+    <string name="profile_warning_title">Perhatian</string>
+    <string name="profile_warning_subtitle">Lengkapi profil Anda untuk pengalaman yang lebih baik</string>
+    <string name="profile_my_account">Akun Saya</string>
+    <string name="profile_complete_profile">Lengkapi Profil</string>
+    <string name="profile_complete_profile_subtitle">Lengkapi informasi profil Anda</string>
+    <string name="profile_address">Alamat</string>
+    <string name="profile_address_subtitle">Kelola alamat pengiriman</string>
+    <string name="profile_payment">Metode Pembayaran</string>
+    <string name="profile_payment_subtitle">Kelola metode pembayaran</string>
+    <string name="profile_voucher">Voucher &amp; Promo</string>
+    <string name="profile_voucher_subtitle">Lihat voucher dan promo tersedia</string>
+    <string name="profile_nutrition">Gizi Meter</string>
+    <string name="profile_nutrition_subtitle">Lihat progres nutrisi Anda</string>
+    <string name="profile_general">Umum</string>
+    <string name="profile_language">Bahasa</string>
+    <string name="profile_privacy">Kebijakan Privasi</string>
+    <string name="profile_terms">Syarat &amp; Ketentuan</string>
+    <string name="profile_support">Dukungan</string>
+    <string name="profile_customer_service">Layanan Pelanggan</string>
+    <string name="profile_faq">FAQ</string>
+    <string name="profile_version">Versi Aplikasi</string>
+    <string name="profile_sign_out">Keluar</string>
 </resources>

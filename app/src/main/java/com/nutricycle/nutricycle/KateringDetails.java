@@ -331,6 +331,7 @@ public class KateringDetails extends AppCompatActivity {
 
     private void addMenuItem(LinearLayout container, KateringMenuData.MenuItem menu) {
         MaterialCardView card = new MaterialCardView(this);
+        card.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white));
         card.setCardElevation(16);
         card.setCardElevation(2);
         card.setStrokeWidth(1);
@@ -408,7 +409,7 @@ public class KateringDetails extends AppCompatActivity {
             
             // Protein
             TextView protein = new TextView(this);
-            protein.setText("P: " + nutrition.getProtein() + "g");
+            protein.setText("Pro: " + nutrition.getProtein() + "g");
             protein.setTextSize(11);
             protein.setTextColor(ContextCompat.getColor(this, R.color.nutri_text_secondary));
             LinearLayout.LayoutParams protParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
@@ -417,7 +418,7 @@ public class KateringDetails extends AppCompatActivity {
             
             // Carbs
             TextView carbs = new TextView(this);
-            carbs.setText("K: " + nutrition.getCarbs() + "g");
+            carbs.setText("Kar: " + nutrition.getCarbs() + "g");
             carbs.setTextSize(11);
             carbs.setTextColor(ContextCompat.getColor(this, R.color.nutri_text_secondary));
             LinearLayout.LayoutParams carbParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
@@ -426,7 +427,7 @@ public class KateringDetails extends AppCompatActivity {
             
             // Fat
             TextView fat = new TextView(this);
-            fat.setText("L: " + nutrition.getFat() + "g");
+            fat.setText("Lem: " + nutrition.getFat() + "g");
             fat.setTextSize(11);
             fat.setTextColor(ContextCompat.getColor(this, R.color.nutri_text_secondary));
             LinearLayout.LayoutParams fatParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
