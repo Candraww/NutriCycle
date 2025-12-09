@@ -45,13 +45,14 @@ Halaman personalisasi pengguna untuk mengatur preferensi diet (vegan/low-carb), 
 ## 📸 UI Gallery
 
 <div align="center">
-  <img src="docs/ss_home.png" alt="Home" width="200"/>
-  <img src="docs/ss_list.png" alt="List" width="200"/>
-  <img src="docs/ss_detail.png" alt="Detail" width="200"/>
+  <img src="docs/hompage.jpg" alt="Home" width="200"/>
+  <img src="docs/kateringlist.jpg" alt="List" width="200"/>
+  <img src="docs/kateringdetail1.jpg" alt="Detail" width="200"/>
 </div>
 <div align="center">
-  <img src="docs/ss_gizi.png" alt="Gizi Meter" width="200"/>
-  <img src="docs/ss_profile.png" alt="Profile" width="200"/>
+  <img src="docs/kateringdtail2.jpg" alt="Detail" width="200"/>
+  <img src="docs/payment" alt="payment" width="200"/>
+  <img src="docs/profile" alt="profile" width="200"/>
 </div>
 
 ---
